@@ -1,0 +1,246 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+
+import 'otp_page.dart';
+
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+  static String verify = "";
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController countryCode = TextEditingController();
+  var phone = "";
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    countryCode.text = '+91';
+    super.initState();
+    //checkUserPhoneNumber();
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/1.png',
+                height: 100,
+                width: 300,
+              ),
+
+              SizedBox(
+                height: 10,
+              ),
+
+              Container(
+                height: 55,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.orange),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white38,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Icon(Icons.person, color: Colors.black),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter your name',
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 55,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.orange),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white38,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                        width: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: TextField(
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                            controller: countryCode,
+                          ),
+                        )
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '|',
+                      style: TextStyle(fontSize: 30, color: Colors.black),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        keyboardType: TextInputType.phone,
+                        onChanged: (value) {
+                          setState(() {
+                            phone = value;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Enter your number',
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.phone),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Spacer(),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  disabledBackgroundColor: Colors.white,
+                  shadowColor: Colors.grey,
+                ),
+                onPressed: () async {
+                  // Check if the name is empty
+                  if (nameController.text.isEmpty) {
+                    // Show an error message or handle it as needed
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Error"),
+                          content: Text("Please enter your name."),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    // If the name is not empty, proceed with phone verification
+                    await APIs.auth.verifyPhoneNumber(
+                      phoneNumber: '${countryCode.text + phone}',
+                      verificationCompleted: (PhoneAuthCredential credential) async {
+                        // Handle verification completed
+                      },
+                      verificationFailed: (FirebaseAuthException e) {
+                        // Handle verification failed
+                      },
+                      codeSent: (String verificationId, int? resendToken) {
+                        LoginScreen.verify = verificationId;
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => OTP(enteredName: nameController.text),
+                          ),
+                        );
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {
+                        // Handle code auto retrieval timeout
+                      },
+                      timeout: Duration(seconds: 60),
+                    );
+                  }
+                },
+                child: Container(
+                  child: _isLoading
+                      ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                      : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.login, color: Colors.green),
+                        SizedBox(width: 8),
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  width: 120,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class APIs {
+  static FirebaseAuth auth = FirebaseAuth.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+
+  static User get user => auth.currentUser!;
+
+  static Future<bool> userExists() async {
+    return (await firestore.collection('users').doc(user.uid).get()).exists;
+  }
+
+  static Future<void> createUser() async {
+    //final time = DateTime.now().millisecondsSinceEpoch.toString();
+  }
+
+}
