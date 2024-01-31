@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -18,48 +16,31 @@ class OTP extends StatefulWidget {
 
 class _OTPState extends State<OTP> {
   final TextEditingController _otpController = TextEditingController();
-  String errorMessage = "";
-  int _secondsRemaining = 60;
-  late Timer _timer;
-  bool isResendButtonVisible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-    // Initial OTP sending when the OTP screen is first displayed
-    sendOTP(widget.enteredName);
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
-      if (_secondsRemaining == 0) {
-        // Timer expired
-        timer.cancel();
-        setState(() {
-          isResendButtonVisible = true;
-        });
-      } else {
-        setState(() {
-          _secondsRemaining--;
-        });
-      }
-    });
-  }
+  String errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(250),
+        child: AppBar(
+          backgroundColor: Color(0xffffded0),
+          flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/1.png',
+                width: 200,
+                height: 100,
+              ),
+              Text(
+                'Welcome',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
 
+            ],
+          ),
+        ),
       ),
       body: SafeArea(
         child: Container(
@@ -95,7 +76,7 @@ class _OTPState extends State<OTP> {
                     } else {
                       // Clear the error message if OTP is not 6 digits
                       setState(() {
-                        errorMessage = "";
+                        errorMessage = '';
                       });
                     }
                   },
@@ -103,26 +84,10 @@ class _OTPState extends State<OTP> {
                 SizedBox(
                   height: 18,
                 ),
-                // Display error message or Resend OTP button
-                isResendButtonVisible
-                    ? ElevatedButton(
-                  onPressed: () {
-                    // Implement logic to resend OTP
-                    resendOTP(widget.enteredName);
-                  },
-                  child: Text('Resend OTP'),
-                )
-                    : Text(
+                // Display error message
+                Text(
                   errorMessage,
                   style: TextStyle(color: Colors.red),
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                // Display timer
-                Text(
-                  'Time remaining: $_secondsRemaining seconds',
-                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
@@ -134,34 +99,6 @@ class _OTPState extends State<OTP> {
 
   void _verifyOTP(String enteredOTP) async {
     try {
-      // Check if the OTP is expired
-      if (isResendButtonVisible) {
-        setState(() {
-          errorMessage = 'OTP expired. Please request a new OTP.';
-        });
-        return;
-      }
-
-      // Obtain the current timestamp
-      DateTime now = DateTime.now();
-
-      // Replace this line with the actual timestamp when the OTP was sent
-      // This timestamp should be obtained when the OTP is initially sent
-      DateTime otpSentTime = DateTime.now();
-
-      // Calculate the time difference in seconds
-      int timeDifference = now
-          .difference(otpSentTime)
-          .inSeconds;
-
-      // Check if the time difference is within the 60-second window
-      if (timeDifference > 60) {
-        setState(() {
-          errorMessage = 'OTP expired. Please request a new OTP.';
-        });
-        return;
-      }
-
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: LoginScreen.verify,
         smsCode: enteredOTP,
@@ -176,10 +113,9 @@ class _OTPState extends State<OTP> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) =>
-              FormScreen(
-                enteredName: widget.enteredName,
-              ),
+          builder: (_) => FormScreen(
+            enteredName: widget.enteredName,
+          ),
         ),
       );
     } catch (e) {
@@ -191,7 +127,8 @@ class _OTPState extends State<OTP> {
           // Map error codes to custom messages
           const errorMessages = {
             'invalid-verification-code': 'Incorrect OTP. Please try again.',
-            'invalid-verification-id': 'Invalid verification ID. Please restart the process.',
+            'invalid-verification-id':
+            'Invalid verification ID. Please restart the process.',
             // Add more error codes and messages as needed
           };
 
@@ -204,31 +141,4 @@ class _OTPState extends State<OTP> {
       });
     }
   }
-
-  void resendOTP(String phoneNumber) {
-    // Replace this function with your actual OTP sending logic
-    // For example, you might call an API to send a new OTP to the given phone number
-    sendOTP(phoneNumber);
-
-    // Reset timer and UI
-    setState(() {
-      _secondsRemaining = 60;
-      isResendButtonVisible = false;
-      errorMessage = "";
-    });
-
-    // Start timer again
-    startTimer();
-  }
-
-  void sendOTP(String phoneNumber) {
-    // Replace this function with your actual OTP sending logic
-    // For example, you might call an API to send a new OTP to the given phone number
-    print('Sending OTP to $phoneNumber');
-    // Simulating OTP sending with a delay
-    Future.delayed(Duration(seconds: 2), () {
-      print('OTP Sent Successfully');
-    });
-  }
-
 }

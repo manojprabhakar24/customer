@@ -32,6 +32,31 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(250),
+        child: AppBar(
+          backgroundColor: Color(0xffffded0),
+          flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/1.png',
+                width: 200,
+                height: 100,
+              ),
+              Text(
+                'Welcome',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '💖',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+
+            ],
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Container(
@@ -39,20 +64,11 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/1.png',
-                height: 100,
-                width: 300,
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
 
               Container(
                 height: 55,
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.orange),
+                  border: Border.all(width: 1, color: Colors.black),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white38,
                 ),
@@ -84,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 height: 55,
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.orange),
+                  border: Border.all(width: 1, color: Colors.black),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white38,
                 ),
