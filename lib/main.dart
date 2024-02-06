@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DRIVER',
       theme: ThemeData(
 
         scaffoldBackgroundColor: const Color(0xffffffff),
