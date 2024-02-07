@@ -1,10 +1,9 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
   final String enteredName;
+
   const FormScreen({Key? key, required this.enteredName}) : super(key: key);
 
   @override
@@ -16,30 +15,29 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController address = TextEditingController();
   TextEditingController dob = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
             child: Container(
-                decoration: BoxDecoration(
-                    gradient:
-                    LinearGradient(colors: [Colors.grey, Color(0xffBBDABB)])),
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Colors.greenAccent, Color(0xffBBDAB)])),
                 child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     width: double.infinity,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 5),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-
                             const Center(
                               child: Text(
                                 'Name',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                             ),
                             const SizedBox(
@@ -51,9 +49,7 @@ class _FormScreenState extends State<FormScreen> {
                                 style: TextStyle(fontSize: 18),
                               ),
                             ),
-
-                          ]
-                      ),
+                          ]),
                     )))));
   }
 }

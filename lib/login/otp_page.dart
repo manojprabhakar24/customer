@@ -46,11 +46,10 @@ class _OTPState extends State<OTP> {
                 width: 200,
                 height: 100,
               ),
-              Text(
+              const Text(
                 'Welcome',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-
             ],
           ),
         ),
@@ -80,7 +79,7 @@ class _OTPState extends State<OTP> {
                 ),
                 Pinput(
                   length: 6,
-                  defaultPinTheme:defaultPinTheme,
+                  defaultPinTheme: defaultPinTheme,
                   showCursor: true,
                   controller: _otpController,
                   onChanged: (value) {
@@ -142,7 +141,7 @@ class _OTPState extends State<OTP> {
           const errorMessages = {
             'invalid-verification-code': 'Incorrect OTP. Please try again.',
             'invalid-verification-id':
-            'Invalid verification ID. Please restart the process.',
+                'Invalid verification ID. Please restart the process.',
             // Add more error codes and messages as needed
           };
 
