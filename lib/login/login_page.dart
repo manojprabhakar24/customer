@@ -29,9 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(250),
+        preferredSize: const Size.fromHeight(250),
         child: AppBar(
-          backgroundColor: Color(0xffffded0),
+          backgroundColor: const Color(0xffffded0),
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -104,8 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: TextField(
-                            style: TextStyle(color: Colors.black87),
-                            decoration: InputDecoration(
+                            style: const TextStyle(color: Colors.black87),
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                             controller: countryCode,
