@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "317818174779",
-    "project_id": "transmaa-9fa8e",
-    "storage_bucket": "transmaa-9fa8e.appspot.com"
+    "project_number": "825357754795",
+    "project_id": "logisticss-1ef6c",
+    "storage_bucket": "logisticss-1ef6c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:317818174779:android:65592047e9b60931660b1e",
+        "mobilesdk_app_id": "1:825357754795:android:4299f7abb8c1a52c82b2ee",
         "android_client_info": {
           "package_name": "com.example.customer"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCjK6C4Celx1bB8Ty6vemK-7d7TUlnfgyo"
+          "current_key": "AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI"
         }
       ],
       "services": {
@@ -26,15 +26,72 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:317818174779:android:415bf84657b51323660b1e",
+        "mobilesdk_app_id": "1:825357754795:android:3df70ef50c753bf782b2ee",
         "android_client_info": {
-          "package_name": "com.example.transmaacode"
+          "package_name": "com.example.demo"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCjK6C4Celx1bB8Ty6vemK-7d7TUlnfgyo"
+          "current_key": "AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825357754795:android:8ea88b5e8fd3fd7382b2ee",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825357754795:android:7d3a2f726db5b0cf82b2ee",
+        "android_client_info": {
+          "package_name": "com.example.logistics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825357754795:android:b82896ce6f29c01782b2ee",
+        "android_client_info": {
+          "package_name": "com.example.transmaa_dash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI"
         }
       ],
       "services": {

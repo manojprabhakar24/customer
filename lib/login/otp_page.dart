@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../form.dart';
 import 'login_page.dart';
@@ -14,9 +15,36 @@ class OTP extends StatefulWidget {
   State<OTP> createState() => _OTPState();
 }
 
-class _OTPState extends State<OTP> {
+class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
   final TextEditingController _otpController = TextEditingController();
   String errorMessage = '';
+  late FocusNode _otpFocusNode;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _otpFocusNode = FocusNode();
+    _otpFocusNode.requestFocus();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    );
+    _animationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _otpFocusNode.dispose();
+    _otpController.dispose();
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +69,13 @@ class _OTPState extends State<OTP> {
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/1.png',
-                width: 200,
-                height: 100,
+              FadeTransition(
+                opacity: _animation,
+                child: Image.asset(
+                  'assets/1.png',
+                  width: 200,
+                  height: 100,
+                ),
               ),
               const Text(
                 'Welcome',
@@ -82,6 +113,7 @@ class _OTPState extends State<OTP> {
                   defaultPinTheme: defaultPinTheme,
                   showCursor: true,
                   controller: _otpController,
+                  focusNode: _otpFocusNode,
                   onChanged: (value) {
                     // Check if entered OTP is correct
                     if (value.length == 6) {
@@ -117,22 +149,23 @@ class _OTPState extends State<OTP> {
         smsCode: enteredOTP,
       );
 
-      // Show loading indicator here if needed
-      // setState(() {});
-
       await APIs.auth.signInWithCredential(credential);
+
+      // Set the logged-in state
+      await _setLoggedIn(true);
 
       // Navigate to the next screen on successful verification
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => FormScreen(
-            enteredName: widget.enteredName,
-          ),
+          builder: (_) =>
+              FormScreen(
+                enteredName: widget.enteredName, onLogout: () {  },
+              ),
         ),
       );
     } catch (e) {
-      // Handle errors more gracefully, show custom user-friendly messages
+      // Handle verification errors
       print("Error verifying OTP: $e");
 
       setState(() {
@@ -141,7 +174,7 @@ class _OTPState extends State<OTP> {
           const errorMessages = {
             'invalid-verification-code': 'Incorrect OTP. Please try again.',
             'invalid-verification-id':
-                'Invalid verification ID. Please restart the process.',
+            'Invalid verification ID. Please restart the process.',
             // Add more error codes and messages as needed
           };
 
@@ -153,5 +186,10 @@ class _OTPState extends State<OTP> {
         }
       });
     }
+  }
+
+  Future<void> _setLoggedIn(bool isLoggedIn) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', isLoggedIn);
   }
 }

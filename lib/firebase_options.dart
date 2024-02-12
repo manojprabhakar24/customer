@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC0i7gbFkT5GVDEP2KhVel5pZz5xld__Nc',
-    appId: '1:317818174779:web:c2dec2d680866df0660b1e',
-    messagingSenderId: '317818174779',
-    projectId: 'transmaa-9fa8e',
-    authDomain: 'transmaa-9fa8e.firebaseapp.com',
-    storageBucket: 'transmaa-9fa8e.appspot.com',
-    measurementId: 'G-RP7L6PTMH4',
+    apiKey: 'AIzaSyDZG0hRzM6ycQxWT5cCUtVQTHFEjLujFH0',
+    appId: '1:825357754795:web:fbbf5ba34f6a011d82b2ee',
+    messagingSenderId: '825357754795',
+    projectId: 'logisticss-1ef6c',
+    authDomain: 'logisticss-1ef6c.firebaseapp.com',
+    storageBucket: 'logisticss-1ef6c.appspot.com',
+    measurementId: 'G-YJ79XC8499',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCjK6C4Celx1bB8Ty6vemK-7d7TUlnfgyo',
-    appId: '1:317818174779:android:65592047e9b60931660b1e',
-    messagingSenderId: '317818174779',
-    projectId: 'transmaa-9fa8e',
-    storageBucket: 'transmaa-9fa8e.appspot.com',
+    apiKey: 'AIzaSyAZeOcg5v5sImBIDA6GjJCE14oPFUcMPbI',
+    appId: '1:825357754795:android:4299f7abb8c1a52c82b2ee',
+    messagingSenderId: '825357754795',
+    projectId: 'logisticss-1ef6c',
+    storageBucket: 'logisticss-1ef6c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAq9ymnnbb1ptMwL_MZpmhQkMzHwpASm1s',
-    appId: '1:317818174779:ios:94d326f966da92fa660b1e',
-    messagingSenderId: '317818174779',
-    projectId: 'transmaa-9fa8e',
-    storageBucket: 'transmaa-9fa8e.appspot.com',
+    apiKey: 'AIzaSyC6024SM1qiMRzOxA72UrIP1UjDh7IUdSQ',
+    appId: '1:825357754795:ios:384c90070620866d82b2ee',
+    messagingSenderId: '825357754795',
+    projectId: 'logisticss-1ef6c',
+    storageBucket: 'logisticss-1ef6c.appspot.com',
     iosBundleId: 'com.example.customer',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAq9ymnnbb1ptMwL_MZpmhQkMzHwpASm1s',
-    appId: '1:317818174779:ios:26dec0230a5c9851660b1e',
-    messagingSenderId: '317818174779',
-    projectId: 'transmaa-9fa8e',
-    storageBucket: 'transmaa-9fa8e.appspot.com',
+    apiKey: 'AIzaSyC6024SM1qiMRzOxA72UrIP1UjDh7IUdSQ',
+    appId: '1:825357754795:ios:3d711a0a9703571782b2ee',
+    messagingSenderId: '825357754795',
+    projectId: 'logisticss-1ef6c',
+    storageBucket: 'logisticss-1ef6c.appspot.com',
     iosBundleId: 'com.example.customer.RunnerTests',
   );
 }

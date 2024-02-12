@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'otp_page.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key, required void Function() onLogin}) : super(key: key);
   static String verify = "";
 
   @override
