@@ -40,6 +40,8 @@ dependencies:
   firebase_core: ^2.24.2
   pinput: ^3.0.1
   shared_preferences: ^2.2.2
+  http: ^1.2.0
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +61,27 @@ dev_dependencies:
 flutter:
   assets:
     - assets/1.png
+    - assets/delivery.png
+    - assets/logisctiss.png
+    - assets/logo_removebg.png
+    - assets/offerimage.png
+    - assets/openboximg.png
+    - assets/logisctiss.png
+    - assets/delivery.png
+    - assets/truck_5-removebg-preview.png
+    - assets/truck_4-removebg-preview.png
+    - assets/truck_3-removebg-preview.png
+    - assets/truck22 remove.png
+    - assets/truck2-removebg-preview.png
+    - assets/sale1.png
+    - assets/sale2.png
+    - assets/icons/bell.png
+    - assets/icons/buyandsell_icon.png
+    - assets/icons/financeandinsurance_icon.png
+    - assets/icons/history_icon.png
+    - assets/icons/loads_icon.png
+    - assets/icons/question.png
+    - assets/icons/user_icon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

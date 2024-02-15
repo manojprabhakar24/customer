@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController countryCode = TextEditingController();
   var phone = "";
- final bool _isLoading = false;
+  final bool _isLoading = false;
 
   @override
   void initState() {
@@ -141,11 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const Spacer(),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  disabledBackgroundColor: Colors.white,
-                  shadowColor: Colors.grey,
-                ),
                 onPressed: () async {
                   // Check if the name is empty
                   if (nameController.text.isEmpty) {
@@ -171,8 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // If the name is not empty, proceed with phone verification
                     await APIs.auth.verifyPhoneNumber(
                       phoneNumber: '${countryCode.text + phone}',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) async {
+                      verificationCompleted: (PhoneAuthCredential credential) async {
                         // Handle verification completed
                       },
                       verificationFailed: (FirebaseAuthException e) {
@@ -183,8 +177,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (_) =>
-                                OTP(enteredName: nameController.text),
+                            builder: (_) => OTP(
+                              enteredName: nameController.text,
+                              phoneNumber: countryCode.text + phone,
+                            ),
                           ),
                         );
                       },
@@ -198,27 +194,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   child: _isLoading
                       ? const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
                       : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.login, color: Colors.green),
-                              SizedBox(width: 8),
-                              Text(
-                                'Login',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                            ],
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.login, color: Colors.green),
+                        SizedBox(width: 8),
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
                           ),
                         ),
+                      ],
+                    ),
+                  ),
                   width: 120,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 8),
