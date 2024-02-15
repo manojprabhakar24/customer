@@ -141,11 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const Spacer(),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  disabledBackgroundColor: Colors.white,
-                  shadowColor: Colors.grey,
-                ),
                 onPressed: () async {
                   // Check if the name is empty
                   if (nameController.text.isEmpty) {
@@ -171,8 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // If the name is not empty, proceed with phone verification
                     await APIs.auth.verifyPhoneNumber(
                       phoneNumber: '${countryCode.text + phone}',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) async {
+                      verificationCompleted: (PhoneAuthCredential credential) async {
                         // Handle verification completed
                       },
                       verificationFailed: (FirebaseAuthException e) {
@@ -183,8 +177,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (_) =>
-                                OTP(enteredName: nameController.text),
+                            builder: (_) => OTP(
+                              enteredName: nameController.text,
+                              phoneNumber: countryCode.text + phone,
+                            ),
                           ),
                         );
                       },

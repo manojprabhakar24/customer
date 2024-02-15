@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'bottom_nav_screens/appbar.dart';
 import 'firebase_options.dart';
-import 'form.dart';
 import 'login/login_page.dart';
 // Import your main screen file here
 
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: AuthenticationWrapper(),
     );
   }
@@ -63,6 +64,6 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoggedIn ? FormScreen(enteredName: '', onLogout: () => setAuthenticationStatus(false)) : LoginScreen(onLogin: () => setAuthenticationStatus(true));
+    return _isLoggedIn ? MyHomePage(enteredName: '',) : LoginScreen(onLogin: () => setAuthenticationStatus(true));
   }
 }
