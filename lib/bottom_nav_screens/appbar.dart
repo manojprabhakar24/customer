@@ -8,10 +8,16 @@ import 'loads.dart';
 import 'profile.dart';
 
 class MyHomePage extends StatefulWidget {
+<<<<<<< HEAD
   final String enteredName;
   final String phoneNumber;
 
   const MyHomePage({Key? key, required this.enteredName, required this.phoneNumber}) : super(key: key);
+=======
+  final String enteredName; // Add this field
+
+  MyHomePage({Key? key, required this.enteredName}) : super(key: key);
+>>>>>>> origin/master
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -26,8 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _screens = [
+<<<<<<< HEAD
       Loads(  enteredName: widget.enteredName, phoneNumber: widget.phoneNumber,
         ),
+=======
+      Loads(  enteredName: widget.enteredName,
+        phoneNumber: '',),
+>>>>>>> origin/master
       BuyAndSell(),
       FinanceAndInsurance(),
       Profile()
@@ -86,6 +97,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+<<<<<<< HEAD
+=======
+          Tooltip(
+            message: 'Logout',
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                onPressed: () => _logout(context), // Pass the context here
+                icon: Icon(Icons.login_outlined),
+              ),
+            ),
+          ),
+>>>>>>> origin/master
         ],
       ),
       body: _screens[_selectedIndex],
@@ -117,4 +141,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

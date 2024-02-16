@@ -299,4 +299,8 @@ class ConfirmationPage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

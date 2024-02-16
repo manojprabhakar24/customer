@@ -1,17 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../bottom_nav_screens/appbar.dart';
+import '../form.dart';
 import 'login_page.dart';
 
 class OTP extends StatefulWidget {
   final String enteredName;
-  final String phoneNumber;
 
-  const OTP({Key? key, required this.enteredName, required this.phoneNumber}) : super(key: key);
+  const OTP({Key? key, required this.enteredName}) : super(key: key);
 
   @override
   State<OTP> createState() => _OTPState();
@@ -119,7 +117,7 @@ class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
                   onChanged: (value) {
                     // Check if entered OTP is correct
                     if (value.length == 6) {
-                      _verifyOTP(value, widget.phoneNumber); // Pass phoneNumber parameter
+                      _verifyOTP(value);
                     } else {
                       // Clear the error message if OTP is not 6 digits
                       setState(() {
@@ -144,46 +142,28 @@ class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
     );
   }
 
-  void _verifyOTP(String enteredOTP, String phoneNumber) async {
+  void _verifyOTP(String enteredOTP) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: LoginScreen.verify,
         smsCode: enteredOTP,
       );
 
-      // Sign in with the provided credential
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // Get the current user's ID
-      String userId = userCredential.user!.uid;
-      await FirebaseFirestore.instance.collection('user').doc(userId).set({
-        'name': widget.enteredName,
-        'phoneNumber': phoneNumber, // Include country code with phone number
-        // Add more fields as needed
-      });
-
-
-// Save collection with entered name
-
+      await APIs.auth.signInWithCredential(credential);
 
       // Set the logged-in state
       await _setLoggedIn(true);
 
       // Navigate to the next screen on successful verification
-      // Assuming this code is in your login screen file, such as login_page.dart
-
-// After successful login, obtain the enteredName
-   // Replace this with the actual enteredName obtained after login
-
-// Use Navigator.push to navigate to MyHomePage after successful login
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MyHomePage(enteredName: widget.enteredName, phoneNumber: widget.phoneNumber),
+          builder: (_) =>
+              FormScreen(
+                enteredName: widget.enteredName, onLogout: () {  },
+              ),
         ),
       );
-
-
     } catch (e) {
       // Handle verification errors
       print("Error verifying OTP: $e");
@@ -193,12 +173,14 @@ class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
           // Map error codes to custom messages
           const errorMessages = {
             'invalid-verification-code': 'Incorrect OTP. Please try again.',
-            'invalid-verification-id': 'Invalid verification ID. Please restart the process.',
+            'invalid-verification-id':
+            'Invalid verification ID. Please restart the process.',
             // Add more error codes and messages as needed
           };
 
           // Use custom message if available, otherwise use a generic message
-          errorMessage = errorMessages[e.code] ?? 'An unexpected error occurred. Please try again.';
+          errorMessage = errorMessages[e.code] ??
+              'An unexpected error occurred. Please try again.';
         } else {
           errorMessage = 'An unexpected error occurred. Please try again.';
         }
