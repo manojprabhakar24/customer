@@ -38,11 +38,18 @@ class confirm extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
+                    borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(50)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -73,7 +80,8 @@ class confirm extends StatelessWidget {
                                 height: 7,
                                 child: LinearProgressIndicator(
                                   backgroundColor: Colors.grey[200],
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.red),
                                 ),
                               ),
                             ),
@@ -108,8 +116,4 @@ class confirm extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

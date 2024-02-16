@@ -416,8 +416,4 @@ class _MyFormState extends State<MyForm> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

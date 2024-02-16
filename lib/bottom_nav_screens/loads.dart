@@ -327,7 +327,6 @@ class _LoadsState extends State<Loads> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-<<<<<<< HEAD
                                   builder: (context) => MyForm(
                                     enteredName: widget.enteredName,
                                     phoneNumber: widget.phoneNumber,
@@ -335,15 +334,6 @@ class _LoadsState extends State<Loads> {
                                     toLocation: _toController.text,
                                   ),
                                 )
-=======
-                                builder: (context) => MyForm(
-                                  enteredName: widget.enteredName,
-                                  phoneNumber: widget.phoneNumber,
-                              fromLocation: _fromController.text,
-                              toLocation: _toController.text,
-                            ),
-                            )
->>>>>>> origin/master
                             );},
                           child: Text(
                             "Confirm",
@@ -413,8 +403,4 @@ class DottedLinePainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

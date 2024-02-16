@@ -174,7 +174,8 @@ class ConfirmationPage extends StatelessWidget {
                                     ),
                                     SizedBox(width: 8.0),
                                     Text(
-                                      '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
+                                      '${selectedDate.day}/${selectedDate
+                                          .month}/${selectedDate.year}',
                                       style: TextStyle(fontSize: 16.0),
                                     ),
                                   ],
@@ -299,8 +300,4 @@ class ConfirmationPage extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

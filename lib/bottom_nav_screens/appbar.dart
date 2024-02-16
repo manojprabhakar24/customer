@@ -1,3 +1,4 @@
+import 'package:customer/bottom_nav_screens/fuel.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,16 +9,10 @@ import 'loads.dart';
 import 'profile.dart';
 
 class MyHomePage extends StatefulWidget {
-<<<<<<< HEAD
-  final String enteredName;
-  final String phoneNumber;
+  final String enteredName;// Add this field
+  final String phoneNumber;// Add this field
 
-  const MyHomePage({Key? key, required this.enteredName, required this.phoneNumber}) : super(key: key);
-=======
-  final String enteredName; // Add this field
-
-  MyHomePage({Key? key, required this.enteredName}) : super(key: key);
->>>>>>> origin/master
+  MyHomePage({Key? key, required this.enteredName, required this.phoneNumber, }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -32,15 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _screens = [
-<<<<<<< HEAD
-      Loads(  enteredName: widget.enteredName, phoneNumber: widget.phoneNumber,
-        ),
-=======
       Loads(  enteredName: widget.enteredName,
-        phoneNumber: '',),
->>>>>>> origin/master
+        phoneNumber: widget.phoneNumber,),
       BuyAndSell(),
       FinanceAndInsurance(),
+      fuel(),
       Profile()
     ];
   }
@@ -51,17 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Future<void> _logout(BuildContext context) async {
-    // Clear the authentication state
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isLoggedIn', false);
-
-    // Navigate back to the login screen
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => LoginScreen(onLogin: () {})),
-          (Route<dynamic> route) => false,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,19 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-<<<<<<< HEAD
-=======
-          Tooltip(
-            message: 'Logout',
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                onPressed: () => _logout(context), // Pass the context here
-                icon: Icon(Icons.login_outlined),
-              ),
-            ),
-          ),
->>>>>>> origin/master
+
         ],
       ),
       body: _screens[_selectedIndex],
@@ -124,10 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: ImageIcon(AssetImage('assets/icons/buyandsell_icon.png')),
             label: 'Sell & Buy',
           ),
+
           BottomNavigationBarItem(
             icon: ImageIcon(
                 AssetImage('assets/icons/financeandinsurance_icon.png')),
             label: 'Finance & Insurance',
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/icons/buyandsell_icon.png')),
+            label: 'Fuel',
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/icons/user_icon.png')),
@@ -141,8 +114,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
