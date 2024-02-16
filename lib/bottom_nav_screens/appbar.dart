@@ -11,7 +11,7 @@ import 'profile.dart';
 class MyHomePage extends StatefulWidget {
   final String enteredName;// Add this field
   final String phoneNumber;// Add this field
-
+//ok
   MyHomePage({Key? key, required this.enteredName, required this.phoneNumber, }) : super(key: key);
 
   @override

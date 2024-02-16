@@ -193,7 +193,7 @@ class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
             'invalid-verification-id': 'Invalid verification ID. Please restart the process.',
             // Add more error codes and messages as needed
           };
-
+//
           // Use custom message if available, otherwise use a generic message
           errorMessage = errorMessages[e.code] ?? 'An unexpected error occurred. Please try again.';
         } else {
