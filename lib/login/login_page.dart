@@ -192,6 +192,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange, // Background color set to orange
+                ),
                 child: Container(
                   child: _isLoading
                       ? const Center(

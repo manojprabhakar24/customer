@@ -6,7 +6,6 @@ import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../bottom_nav_screens/appbar.dart';
-import '../bottom_nav_screens/loads.dart';
 import 'login_page.dart';
 
 class OTP extends StatefulWidget {
