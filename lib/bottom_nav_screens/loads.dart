@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -40,7 +41,7 @@ class _LoadsState extends State<Loads> {
   List<PlaceSuggestion> _fromSuggestions = [];
   List<PlaceSuggestion> _toSuggestions = [];
 
-  String? name; // Define userName here
+  String enteredName=''; // Define userName here
 
   @override
   void initState() {
@@ -62,7 +63,7 @@ class _LoadsState extends State<Loads> {
     _fromController = TextEditingController();
     _toController = TextEditingController();
 
-    _fetchUserName(); // Fetch the user name when the widget initializes
+    fetchUserData(); // Fetch the user name when the widget initializes
   }
 
   @override
@@ -73,16 +74,21 @@ class _LoadsState extends State<Loads> {
     super.dispose();
   }
 
-  Future<void> _fetchUserName() async {
-    try {
-      User? user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        setState(() {
-          name = user.displayName; // Retrieve user's display name
-        });
-      }
-    } catch (e) {
-      print('Error fetching user name: $e');
+  Future<void> fetchUserData() async {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Get user document from Firestore
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('user')
+          .doc(user.uid)
+          .get();
+
+      // Extract user data from the document
+      setState(() {
+        enteredName = userDoc['name'];
+      });
     }
   }
 
@@ -122,7 +128,7 @@ class _LoadsState extends State<Loads> {
             Padding(
               padding: EdgeInsets.only(left: 18, top: 15),
               child: Text(
-                "Hi ${name ?? 'there'},", // Display user name here
+                "Hi ${enteredName ?? 'there'},", // Display user name here
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
