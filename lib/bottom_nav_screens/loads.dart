@@ -334,8 +334,6 @@ class _LoadsState extends State<Loads> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MyForm(
-                                    enteredName: widget.enteredName,
-                                    phoneNumber: widget.phoneNumber,
                                     fromLocation: _fromController.text,
                                     toLocation: _toController.text,
                                   ),

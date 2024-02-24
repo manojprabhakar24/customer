@@ -4,15 +4,11 @@ import 'confirmation_page.dart';
 import 'truck.dart';
 
 class MyForm extends StatefulWidget {
-  final String enteredName;
-  final String phoneNumber;
   final String fromLocation;
   final String toLocation;
 
   const MyForm({
     Key? key,
-    required this.enteredName,
-    required this.phoneNumber,
     required this.fromLocation,
     required this.toLocation,
   }) : super(key: key);
@@ -200,8 +196,6 @@ class _MyFormState extends State<MyForm> {
             selectedTime: selectedTime!,
             selectedTruck: selectedTruck!,
             selectedImageName: selectedTruck!.imagePath,
-            enteredName: widget.enteredName,
-            phoneNumber: widget.phoneNumber,
             fromLocation: widget.fromLocation, // Pass fromLocation here
             toLocation: widget.toLocation, // Pass toLocation here
           ),
