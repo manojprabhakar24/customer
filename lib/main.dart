@@ -42,7 +42,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     // Check authentication state when the app starts
     checkAuthenticationStatus();
   }
-
+//
   Future<void> checkAuthenticationStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;

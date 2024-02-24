@@ -15,7 +15,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   bool _showAnimation = false;
-  String userName = '';
+  String userName = '';///
   String phoneNumber = '';
 
 

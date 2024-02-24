@@ -33,7 +33,7 @@ class BuyAndSell extends StatelessWidget {
                 "Buy",
                 style: TextStyle(color: Colors.black, fontSize: 20),
               ),
-            ),
+            ),//
             SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(

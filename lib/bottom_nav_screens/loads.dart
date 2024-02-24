@@ -13,7 +13,7 @@ class PlaceSuggestion {
   PlaceSuggestion({
     required this.displayName,
   });
-
+//
   factory PlaceSuggestion.fromJson(Map<String, dynamic> json) {
     return PlaceSuggestion(
       displayName: json['display_name'] ?? '',

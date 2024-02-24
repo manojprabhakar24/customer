@@ -183,7 +183,7 @@ class _MyFormState extends State<MyForm> {
           selectedTruck!.isSelected = true;
         });
       }
-    });
+    });//
   }
   void _navigateToConfirmationPage() {
     if (selectedTruck != null) {

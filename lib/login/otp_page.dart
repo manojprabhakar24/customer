@@ -175,7 +175,7 @@ class _OTPState extends State<OTP> with SingleTickerProviderStateMixin {
         context,
         MaterialPageRoute(
           builder: (context) => MyHomePage(
-            enteredName: widget.enteredName,
+            enteredName: widget.enteredName,//
             phoneNumber: widget.phoneNumber,
           ),
         ),

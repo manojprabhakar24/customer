@@ -11,7 +11,7 @@ class confirm extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         body: SingleChildScrollView(
           child: SafeArea(
-            child: Column(
+            child: Column(//
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -121,7 +121,7 @@ class ConfirmationPage extends StatelessWidget {
                             width: 120.0,
                             fit: BoxFit.cover,
                           ),
-                        ],
+                        ],//
                       ),
                       Container(
                         height: 80.0,
